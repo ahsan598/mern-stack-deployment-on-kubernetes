@@ -53,7 +53,7 @@ spec:
           limits:
             memory: "1Gi"
             cpu: "500m"
-        # Better health checks
+        # Health checks
         livenessProbe:
           exec:
             command:

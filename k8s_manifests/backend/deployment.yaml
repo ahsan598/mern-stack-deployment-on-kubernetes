@@ -6,7 +6,6 @@ metadata:
   namespace: dev
   labels:
     app: backend
-    type: backend
 spec:
   replicas: 2
   strategy:
@@ -24,13 +23,13 @@ spec:
     spec:
       containers:
       - name: backend
-        image: ahsan98/mern-app:node-1.0  # Your backend image
+        image: ahsan98/mern-app:node-1.0
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 8080  # Correct port matching index.js
+        - containerPort: 8080         # Port matching index.js
           name: http
         env:
-        # Correct environment variable names from ConfigMap
+        # Environment variable names from ConfigMap
         - name: MONGO_CONN_STR
           valueFrom:
             configMapKeyRef:

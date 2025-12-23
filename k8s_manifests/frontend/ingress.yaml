@@ -10,7 +10,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: todo-app.local  # Ya apna domain
+  - host: todo-app.local          # Your domain name
     http:
       paths:
       - path: /
