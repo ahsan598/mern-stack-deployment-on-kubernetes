@@ -1,0 +1,57 @@
+# ===============================
+# Node / MERN
+# ===============================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+dist/
+build/
+
+# ===============================
+# Environment / Secrets
+# ===============================
+.env
+.env.*
+*.pem
+*.key
+secrets.yaml
+**/secrets/*.yaml
+
+# ===============================
+# Logs
+# ===============================
+logs/
+*.log
+
+# ===============================
+# OS / Editor
+# ===============================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ===============================
+# Kubernetes
+# ===============================
+*.kubeconfig
+kubeconfig
+**/helm/charts/
+**/helm/values.local.yaml
+
+# ===============================
+# Test / Coverage
+# ===============================
+coverage/
+.nyc_output/
+__tests__/
+
+# ===============================
+# Misc
+# ===============================
+tmp/
+.cache/
