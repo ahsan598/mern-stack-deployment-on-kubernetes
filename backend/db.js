@@ -1,19 +1,21 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-module.exports = async function connectDB() {
-  try {
-    const options = {};
+module.exports = async () => {
+    try {
+        const connectionParams = {};
+        
+        const useDBAuth = process.env.USE_DB_AUTH || false;
+        if(useDBAuth){
+            connectionParams.user = process.env.MONGO_USERNAME;
+            connectionParams.pass = process.env.MONGO_PASSWORD;
+        }
 
-    if (process.env.USE_DB_AUTH === 'true') {
-      options.user = process.env.MONGO_USERNAME;
-      options.pass = process.env.MONGO_PASSWORD;
+        await mongoose.connect(
+           process.env.MONGO_CONN_STR,
+           connectionParams
+        );
+        console.log("Connected to database.");
+    } catch (error) {
+        console.log("Could not connect to database.", error);
     }
-
-    await mongoose.connect(process.env.MONGO_CONN_STR, options);
-
-    console.log('Connected to database');
-  } catch (error) {
-    console.error('Could not connect to database:', error.message);
-    process.exit(1);
-  }
 };

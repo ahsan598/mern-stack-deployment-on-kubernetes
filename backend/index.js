@@ -1,26 +1,22 @@
-require('dotenv').config();
-
-const express = require('express');
-const cors = require('cors');
-
-const tasks = require('./routes/tasks');
-const connection = require('./db');
-
+const tasks = require("./routes/tasks");
+const connection = require("./db");
+const cors = require("cors");
+const express = require("express");
 const app = express();
 
+// Database Connection
 connection();
 
-app.use(cors());
+// Middleware
 app.use(express.json());
+app.use(cors());
 
-app.get('/ok', (_, res) => {
-  res.status(200).send('ok');
+// Routes
+app.get('/ok', (req, res) => {
+    res.status(200).send('ok');
 });
 
-app.use('/api/tasks', tasks);
+app.use("/api/tasks", tasks);
 
-const PORT = process.env.PORT || 8080;
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+const port = process.env.PORT || 8080;
+const server = app.listen(port, () => console.log(`Listening on port ${port}...`));

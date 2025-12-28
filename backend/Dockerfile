@@ -1,5 +1,7 @@
-# Use minimal Node image as a base image
-FROM node:24-alpine
+# ======================================================
+# Stage 1: Build Stage
+# ======================================================
+FROM node:24-alpine AS builder
 
 # Set the working directory in the container
 WORKDIR /app
@@ -8,13 +10,20 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install the application's dependencies inside the container
-RUN npm install --production
+RUN npm ci --only=production
 
-# Copy the rest of the application code to the container
-COPY . .
+# ======================================================
+# Stage 2: Final Stage
+# ======================================================
+FROM node:24-alpine
+WORKDIR /app
 
 # Run as non-root user (node user exists in alpine)
 USER node
+
+# Copy only necessary files from builder (--chown=node:node ensures the node user owns the files)
+COPY --from=builder --chown=node:node /app/node_modules ./node_modules
+COPY --chown=node:node . .
 
 # Expose Port to the container
 EXPOSE 8080

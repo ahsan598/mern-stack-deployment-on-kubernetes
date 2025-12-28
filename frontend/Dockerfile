@@ -13,10 +13,14 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install project dependencies
-RUN npm install --production
+RUN npm ci
 
 # Copy the rest of the application source code
 COPY . .
+
+# Environment variable for Vite build
+ARG VITE_API_URL
+ENV VITE_API_URL=$VITE_API_URL
 
 # Build the React application, the output is generated in the /app/build directory
 RUN npm run build
@@ -32,6 +36,9 @@ FROM nginx:1.28-alpine
 
 # Copy the build artifacts from the build stage to Nginx's default web directory
 COPY --from=builder /app/build /usr/share/nginx/html
+
+# Copy custom Nginx config for React Router support
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Expose HTTP port
 EXPOSE 80
