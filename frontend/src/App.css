@@ -1,69 +1,73 @@
-.app {
+/* Background styling to match the purple gradient */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.App {
+    min-height: 100vh; /* Full viewport height */
+    width: 100vw;
+    display: flex;
+    align-items: center; /* Vertical Center */
+    justify-content: center; /* Horizontal Center */
+    background: linear-gradient(135deg, #818cf8 0%, #6366f1 50%, #8b5cf6 100%); /* Purple Gradient */
+}
+
+/* Main White Card Container */
+.container {
+    width: 500px !important; /* Fixed width */
+    min-height: 500px;
+    background-color: white !important;
+    padding: 20px;
+    border-radius: 5px !important;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    /* Box Shadow for better look */
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2) !important; 
 }
 
-.app-header {
-    background-color: #282c34;
+/* Dark Header Box */
+.heading {
+    background-color: #23252e;
     color: white;
-    padding: 10px 20px;
+    font-size: 2rem;
+    font-weight: 500;
     text-align: center;
-    font-size: 1.5rem;
-}
-
-.main-content {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-.todo-container {
-    width: 100%;
-    max-width: 600px;
-    padding: 20px;
-}
-
-.task-form {
-    display: flex;
-    gap: 10px;
+    padding: 20px 0;
     margin-bottom: 20px;
+    border-radius: 4px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.task-input {
-    flex-grow: 1;
-}
-
-.add-task-btn, .delete-task-btn {
-    flex-shrink: 0;
-    box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
-    transition: transform 0.1s ease-in-out;
-}
-
-.add-task-btn:hover, .delete-task-btn:hover {
-    transform: scale(1.05);
-}
-
-.tasks-list {
-    margin-top: 10px;
-}
-
-.task-item {
+/* Utility Class for Flex Rows (Form & Tasks) */
+.flex {
     display: flex;
     align-items: center;
-    margin-top: 10px;
+    gap: 10px; /* Space between input and button */
+}
+
+/* Task Item Styling */
+.task_container {
     padding: 10px;
-    box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f9f9f9 !important; /* Slight grey for tasks */
 }
 
-.task-text {
-    flex-grow: 1;
-    margin: 0 10px;
-}
-
-.task-text.completed {
+/* Strike-through for completed tasks */
+.line_through {
     text-decoration: line-through;
+    color: #888;
+    flex-grow: 1; /* Text takes available space */
+    margin-left: 10px;
 }
 
+.task {
+    flex-grow: 1;
+    margin-left: 10px;
+    font-size: 1.1rem;
+}

@@ -3,7 +3,7 @@ import { Paper, TextField, Checkbox, Button } from "@mui/material";
 import "./App.css";
 import axios from "axios";
 
-const apiUrl = import.meta.env.VITE_API_URL || "/api/tasks";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const App = () => {
     const [tasks, setTasks] = useState([]);
